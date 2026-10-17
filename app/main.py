@@ -3,9 +3,9 @@ from functools import wraps
 
 
 def cache(func: Callable[..., Any]) -> Callable[..., Any]:
-    saved_results: dict[Any, Any] = ({}
+    saved_results: dict[Any, Any] = {}
 
-    @wraps(func))
+    @wraps(func)
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         key = (args, tuple(kwargs.items()))
         if key in saved_results:
