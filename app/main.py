@@ -1,13 +1,13 @@
-from typing import Callable
+from typing import Callable, Any
 from functools import wraps
-
 
 
 def cache(func: Callable) -> Callable:
 
     saved_results = {}
+
     @wraps(func)
-    def wrapper(*args):
+    def wrapper(*args: Any):
         if args in saved_results:
             print("Getting from cache")
             return saved_results[args]
@@ -16,4 +16,5 @@ def cache(func: Callable) -> Callable:
         result = func(*args)
         saved_results[args] = result
         return result
+
     return wrapper
